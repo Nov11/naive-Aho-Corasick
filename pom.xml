@@ -7,6 +7,11 @@
     <groupId>nov11</groupId>
     <artifactId>aho-corasick</artifactId>
     <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
     <build>
         <plugins>
             <plugin>
@@ -21,6 +26,9 @@
             <plugin>
                 <groupId>org.eluder.coveralls</groupId>
                 <artifactId>coveralls-maven-plugin</artifactId>
+                <configuration>
+                    <repoToken>${env.repoToken}</repoToken>
+                </configuration>
                 <version>4.3.0</version>
             </plugin>
 
