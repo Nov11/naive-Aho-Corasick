@@ -67,7 +67,7 @@ public class AhoCorasickTest {
     }
 
     @Test
-    public void randomMatchTest() {
+    public void benchmarkTest() {
         Set<String> ret = ahoCorasick.match(content);
         Assert.assertEquals(words.size(), ret.size());
     }
