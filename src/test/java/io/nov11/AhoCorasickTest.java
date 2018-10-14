@@ -20,37 +20,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class AhoCorasickTest {
-    @Rule
-    public TestRule benchmarkRun = new BenchmarkRule();
-
-    private static String content;
-
-    private static List<String> words;
-
-    private static AhoCorasick ahoCorasick;
-
-    private static Trie trieFromRobertBor;
-
-    @BeforeClass
-    public static void init() throws Exception {
-        String fileName = "src/test/resources/kjvdat.txt";
-        String wordList = "src/test/resources/words";
-
-        byte[] contentBytes = Files.readAllBytes(Paths.get(fileName));
-        content = new String(contentBytes, StandardCharsets.UTF_8).toLowerCase();
-        words = Files.readAllLines(Paths.get(wordList));
-        ahoCorasick = new AhoCorasick(words);
-
-
-        Trie.TrieBuilder builder = Trie.builder();
-        for (String s : words) {
-            builder.addKeyword(s);
-        }
-        trieFromRobertBor = builder.build();
-    }
-
     @Test
-    public void match() {
+    public void simpleMatchingAssertion() {
         List<String> needles = new ArrayList<>();
         needles.add("he");
         needles.add("she");
@@ -66,16 +37,10 @@ public class AhoCorasickTest {
 
     }
 
-    @Test
-    public void benchmarkTest() {
-        Set<String> ret = ahoCorasick.match(content);
-        Assert.assertEquals(words.size(), ret.size());
-    }
+
 
     @Test
-    public void robert_bor_aho_corasick() {
-        Collection<Emit> ret = trieFromRobertBor.parseText(content);
-        Set<String> result = ret.stream().map(Emit::getKeyword).collect(Collectors.toSet());
-        Assert.assertEquals(words.size(), result.size());
+    public void bibleWordsCountExpectedResultCorrectnessAssertion() {
+
     }
 }
