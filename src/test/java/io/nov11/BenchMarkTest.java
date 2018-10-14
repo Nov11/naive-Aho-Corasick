@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@BenchmarkOptions(/*callgc = false,*/ benchmarkRounds = 40, warmupRounds = 20)
+@BenchmarkOptions(benchmarkRounds = 40, warmupRounds = 20)
 public class BenchMarkTest {
     @Rule
     public TestRule benchmarkRun = new BenchmarkRule();
