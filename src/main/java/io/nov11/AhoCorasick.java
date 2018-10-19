@@ -118,4 +118,27 @@ public class AhoCorasick {
 
         return result;
     }
+
+    public boolean contains(String target){
+        Node cur = root;
+        for(int i = 0; i < target.length(); i++){
+            Character c = target.charAt(i);
+            Node next = cur.go(c);
+            if(next == null){
+                Node f = cur.failNode;
+                while(f.go(c) == null){
+                    f = f.failNode;
+                }
+                cur = f.go(c);
+            }else{
+                cur = next;
+            }
+
+            if(!cur.output.isEmpty()){
+                return true;
+            }
+        }
+
+        return false;
+    }
 }
